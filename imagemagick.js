@@ -320,9 +320,9 @@ exports.crop = function (options, callback) {
             resizeTo  = (dSrc < dDst) ? ''+t.opt.width+'x' : 'x'+t.opt.height,
             dGravity  = options.gravity ? options.gravity : "Center";
         args = args.concat([
-          '-resize', resizeTo,
-          '-gravity', dGravity,
-          '-crop', ''+t.opt.width + 'x' + t.opt.height + '+0+0',
+          //'-resize', resizeTo,
+          //'-gravity', dGravity,
+          '-crop', ''+t.opt.width + 'x' + t.opt.height + '+' + (t.opt.x || 0) + '+' + (t.opt.y || 0),
           '+repage'
         ]);
         ignoreArg = false;
@@ -350,7 +350,9 @@ exports.resizeArgs = function(options) {
     filter: 'Lagrange',
     sharpening: 0.2,
     customArgs: [],
-    timeout: 0
+    timeout: 0,
+    x: 0,
+    y: 0,
   }
 
   // check options
